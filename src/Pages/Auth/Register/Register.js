@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import {
-    useAuthState,
+  useAuthState,
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
   useUpdateProfile,
@@ -27,7 +27,7 @@ const Register = () => {
   const onSubmit = async (data) => {
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data.name });
-    navigate('/appointment')
+    navigate("/appointment");
   };
   useEffect(() => {
     if (emailError || googleError || updateError) {
@@ -54,10 +54,11 @@ const Register = () => {
 
   const location = useLocation();
   const from = location.state?.from || { pathname: "/" };
-  if (user) {
-    navigate(from)
-  }
-
+  useEffect(() => {
+    if (user) {
+      navigate(from);
+    }
+  }, [user, from, navigate]);
 
   return (
     <div className="flex h-[90vh] items-center">

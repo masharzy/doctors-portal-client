@@ -1,8 +1,11 @@
 import { format } from "date-fns";
 import React from "react";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from "../../../../firebase.init"
 
 const Modal = ({ treatment, date, setTreatment }) => {
   const { _id, name, slots } = treatment;
+  const [user] = useAuthState(auth);
   let selectedDate;
   if (date) {
     selectedDate = format(date, "PP");
@@ -39,14 +42,16 @@ const Modal = ({ treatment, date, setTreatment }) => {
               {/* <option disabled selected>
                 Select Time Slot
               </option> */}
-              {slots.map((slot) => (
-                <option key={slot._id} value={slot}>{slot}</option>
+              {slots.map((slot, index) => (
+                <option key={index} value={slot}>{slot}</option>
               ))}
             </select>
             <input
               type="text"
               placeholder="Full Name"
               className="input input-bordered w-full mb-5"
+              disabled
+              value={user.displayName}
             />
             <input
               type="text"
@@ -57,6 +62,8 @@ const Modal = ({ treatment, date, setTreatment }) => {
               type="text"
               placeholder="Email"
               className="input input-bordered w-full mb-5"
+              value={user.email}
+              disabled
             />
             <input
               type="submit"

@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import auth from "../../../firebase.init";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [signInWithGoogle, googleUser, googleLoading, googleError] =
     useSignInWithGoogle(auth);
   const [signInWithEmailAndPassword, emailUser, emailLoading, emailError] =
@@ -46,10 +47,11 @@ const Login = () => {
 
   const location = useLocation();
   const from = location.state?.from || { pathname: "/" };
-  const navigate = useNavigate();
-  if (user) {
-    navigate(from)
-  }
+  useEffect(() => {
+    if (user) {
+      navigate(from);
+    }
+  }, [user, from, navigate]);
 
   return (
     <div className="flex h-[90vh] items-center">
