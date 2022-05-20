@@ -12,7 +12,7 @@ const Modal = ({ treatment, date, setTreatment }) => {
     e.preventDefault();
     const slot = e.target.slot.value;
     setTreatment(null)
-    console.log(_id, name, slot);
+    // console.log(_id, name, slot);
   };
 
   return (
@@ -40,7 +40,7 @@ const Modal = ({ treatment, date, setTreatment }) => {
                 Select Time Slot
               </option> */}
               {slots.map((slot) => (
-                <option value={slot}>{slot}</option>
+                <option key={slot._id} value={slot}>{slot}</option>
               ))}
             </select>
             <input

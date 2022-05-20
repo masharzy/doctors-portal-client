@@ -25,7 +25,7 @@ const Testimonials = () => {
       </div>
       <div className="flex lg:flex-nowrap flex-wrap mt-10 px-10">
         {testimonials.map((testimonial) => (
-          <Testimonial key={testimonial} testimonial={testimonial} />
+          <Testimonial key={testimonial._id} testimonial={testimonial} />
         ))}
       </div>
     </div>
