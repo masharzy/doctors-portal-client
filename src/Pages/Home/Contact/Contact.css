@@ -1,0 +1,7 @@
+.contact-bg {
+  background-image: url("../../../assets/images/appointment.png");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
